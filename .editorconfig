@@ -1,0 +1,43 @@
+# ============================================
+# .editorconfig - 编辑器统一配置
+# 让所有开发者使用相同的代码风格
+# ============================================
+
+root = true
+
+# 所有文件
+[*]
+charset = utf-8
+end_of_line = lf
+indent_style = space
+indent_size = 4
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# HTML文件
+[*.html]
+indent_size = 4
+
+# CSS文件
+[*.css]
+indent_size = 4
+
+# JavaScript文件
+[*.js]
+indent_size = 4
+
+# JSON文件
+[*.json]
+indent_size = 2
+
+# YAML文件
+[*.{yml,yaml}]
+indent_size = 2
+
+# Markdown文件
+[*.md]
+trim_trailing_whitespace = false
+
+# 配置文件
+[*.txt]
+indent_size = 2

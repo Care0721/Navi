@@ -1,0 +1,38 @@
+# ============================================
+# .gitignore - Git忽略配置
+# 防止不必要的文件被提交到仓库
+# ============================================
+
+# 系统文件
+.DS_Store
+.DS_Store?
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# IDE配置
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 临时文件
+*.tmp
+*.log
+*.bak
+
+# 上传文件（不要提交到Git）
+.uploads/
+
+# 环境配置（如果有API密钥）
+.env
+.env.local
+.env.*.local
+
+# 构建产物（如果使用构建工具）
+dist/
+node_modules/
+
+# Trae配置
+.trae/

@@ -1,0 +1,49 @@
+# GitHub Pages HTTP Headers 配置
+# 核心目标：让动画更流畅、页面加载更快
+
+# === HTML入口 ===
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  # 预连接到关键CDN域名（浏览器会提前建立连接，加载CSS/JS时零延迟）
+  Link: <https://cdn.tailwindcss.com>; rel=preconnect, <https://cdnjs.cloudflare.com>; rel=preconnect, <https://cdn.jsdelivr.net>; rel=preconnect
+
+# === 静态资源 - 长期缓存 ===
+/*.css
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.js
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+
+# === 图片资源 ===
+/*.png
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.jpg
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.jpeg
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.gif
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.svg
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+# === Service Worker ===
+/sw.js
+  Cache-Control: public, max-age=0, must-revalidate
+
+# === PWA Manifest ===
+/manifest.json
+  Cache-Control: public, max-age=3600
+  Content-Type: application/manifest+json

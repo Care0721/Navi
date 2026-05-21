@@ -1,0 +1,57 @@
+# ============================================
+# GitHub Actions 自动部署到 GitHub Pages
+# 推送代码后自动部署，无需手动操作
+# 配置信息：
+#   - 用户名: Care0721
+#   - 仓库: Navi
+#   - 域名: laingal.top
+# ============================================
+
+name: 🚀 Deploy to GitHub Pages
+
+# 触发条件：推送到main分支时自动部署
+on:
+  push:
+    branches: [ main, master ]
+  # 也支持手动触发
+  workflow_dispatch:
+
+# 权限配置
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 防止同时部署多个版本
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # 单个部署任务
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      # 1. 拉取代码
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+
+      # 2. 配置GitHub Pages
+      - name: ⚙️ Setup Pages
+        uses: actions/configure-pages@v4
+
+      # 3. 上传构建产物
+      - name: 📦 Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+          # 排除不需要部署的文件
+          if-no-files-found: warn
+
+      # 4. 部署到GitHub Pages
+      - name: 🚀 Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,17 @@
+# ============================================
+# security.txt - 安全策略声明
+# 放在 .well-known/security.txt 路径下
+# 告诉安全研究者如何报告漏洞
+# ============================================
+
+# 联系方式
+Contact: mailto:your-email@example.com
+
+# 安全策略页面
+Policy: https://github.com/yourusername/your-repo/security
+
+# 漏洞赏金计划（如果有的话）
+# Acknowledgments: https://yourusername.github.io/security/thanks.html
+
+# 有效期（每年更新）
+Preferred-Languages: zh-CN, en

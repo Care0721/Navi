@@ -1,0 +1,19 @@
+# ============================================
+# robots.txt - 搜索引擎爬虫配置
+# 告诉搜索引擎哪些页面可以抓取，哪些不能
+# ============================================
+
+# 允许所有搜索引擎抓取
+User-agent: *
+Allow: /
+
+# 禁止抓取的路径（如果有API密钥或敏感数据）
+Disallow: /api/
+Disallow: /.git/
+Disallow: /.trae/
+
+# 站点地图位置（如果有）
+# Sitemap: https://yourusername.github.io/sitemap.xml
+
+# 爬虫抓取延迟（秒）- 减轻服务器压力
+Crawl-delay: 1

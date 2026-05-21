@@ -1,0 +1,17 @@
+# ============================================
+# humans.txt - 项目信息
+# 让访问者了解这个网站是谁做的
+# ============================================
+
+/* TEAM */
+Name: Navi·Gal
+Site: https://yourusername.github.io
+Location: China
+Role: Developer & Designer
+
+/* SITE */
+Last update: 2026/05/21
+Language: Chinese (Simplified)
+Framework: Vanilla HTML/CSS/JS + Tailwind CSS
+CDN: Tailwind CDN, Font Awesome
+Software: VS Code

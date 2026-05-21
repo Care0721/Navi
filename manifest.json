@@ -1,0 +1,20 @@
+{
+  "name": "Galgame Station",
+  "short_name": "GalStation",
+  "description": "一站式Galgame资源检索平台，聚合49+资源站",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#1a1a2e",
+  "theme_color": "#6366f1",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "Navi.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["games", "entertainment"],
+  "lang": "zh-CN"
+}

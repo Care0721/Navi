@@ -1,0 +1,35 @@
+# Jekyll配置 for GitHub Pages
+title: Galgame Station
+description: 一站式Galgame资源检索平台，聚合49+资源站
+
+# 禁用Jekyll处理，纯静态HTML
+theme: null
+
+# 排除文件（不部署到GitHub Pages）
+exclude:
+  - README.md
+  - package.json
+  - package-lock.json
+  - .trae/
+  - .uploads/
+  - "*.md"
+
+# 保留文件
+include:
+  - _headers
+  - _redirects
+
+# 压缩HTML（如果使用Jekyll）
+compress_html:
+  clippings: all
+  comments: ["<!--", "-->"]
+  endings: all
+  startings: [html, head, body]
+
+# 默认布局（不适用，因为是纯HTML）
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      layout: null
