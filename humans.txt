@@ -5,7 +5,7 @@
 
 /* TEAM */
 Name: Navi·Gal
-Site: https://yourusername.github.io
+Site: https://Care0721.github.io
 Location: China
 Role: Developer & Designer
 
