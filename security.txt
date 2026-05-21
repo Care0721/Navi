@@ -5,10 +5,10 @@
 # ============================================
 
 # 联系方式
-Contact: mailto:your-email@example.com
+Contact: mailto:MinnaDees2691992jtT@gmail.com
 
 # 安全策略页面
-Policy: https://github.com/yourusername/your-repo/security
+Policy: https://github.com/Care0721/security
 
 # 漏洞赏金计划（如果有的话）
 # Acknowledgments: https://yourusername.github.io/security/thanks.html
