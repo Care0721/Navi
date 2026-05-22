@@ -11192,30 +11192,6 @@ const HmGalAPI = {
 // 通过 Next.js API 搜索游戏资源，带 cookies 提取 CDN 下载链接
 const GalZoneAPI = {
     base: 'https://galgame.zone',
-    _cookies: '__Secure-next-auth.session-token=eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0.._gw0X1EqhshqLnz8.lcXvAtIMSCikgoZeb2qmUctnS-lCk42mGzwaRiGRvxSpA_nbOeRQ8LyXNeAhL0HzEZLurgoc-bj61w7p4-WGQap2Dnv27KqFPc9pZb8mQK8WjcIMpGRM9exwDsogGcEAm2Uu_gMxVWYU-uxrrvD42yCu8_Si3FYla1uSugQ9RHU-3ZupA2dg1ew7QY9TXIG4lSvKDoUA54Mu0588JGj5NipSSySQ_y-sP71S0laIUp9sHvXlZHzMojVVBgLY_R0Q4zmx4AeWHp7nFvAl1Gc_hV-c3BFLhArcDeGO-zmzZcOqfg.A0ltxYiEYTolgzUZRb8gjg; ageLevel=r18g; NEXT_LOCALE=zh-Hans',
-
-    // 从详情页提取 CDN 下载链接
-    async _fetchDownloads(gameId) {
-        try {
-            const html = await CORSProxy.fetchHTML(`${this.base}/games/${gameId}`, {
-                signal: AbortSignal.timeout(12000),
-                headers: {
-                    'User-Agent': 'Mozilla/5.0',
-                    'Cookie': this._cookies
-                }
-            });
-            // 提取 CDN 下载链接
-            const cdnLinks = [];
-            const cdnRegex = /href="(https:\/\/galgame\.zone\/cdn-cgi\/content\?id=[^"]+)"/g;
-            let m;
-            while ((m = cdnRegex.exec(html)) !== null) {
-                cdnLinks.push(m[1]);
-            }
-            return cdnLinks;
-        } catch (e) {
-            return [];
-        }
-    },
 
     async search(keyword, limit = 10) {
         try {
@@ -11247,12 +11223,6 @@ const GalZoneAPI = {
             
             if (matchedResults.length === 0) return [];
 
-            // 前3个匹配结果获取下载链接
-            const topResults = matchedResults.slice(0, 3);
-            const dlResults = await Promise.allSettled(
-                topResults.map(r => this._fetchDownloads(r.game?.id))
-            );
-
             const items = [];
             for (let i = 0; i < matchedResults.length && items.length < limit; i++) {
                 const r = matchedResults[i];
@@ -11261,35 +11231,15 @@ const GalZoneAPI = {
                 if (g.platforms) tags.push(...g.platforms);
                 if (g.ageRating === 'r18') tags.push('R18');
 
-                if (i < dlResults.length && dlResults[i].status === 'fulfilled') {
-                    const dlLinks = dlResults[i].value;
-                    if (dlLinks.length > 0) {
-                        // 有下载链接
-                        for (const dl of dlLinks) {
-                            items.push({
-                                name: g.name || '未知游戏',
-                                url: dl,
-                                type: 'download',
-                                source: 'galzone',
-                                drive: '自建云盘',
-                                code: 'galgame.zone',
-                                size: '',
-                                tags: tags,
-                                date: r.releaseDate || ''
-                            });
-                        }
-                        continue;
-                    }
-                }
-
-                // 无下载链接：跳转详情页
+                // 统一跳转到详情页，避免CDN链接404问题
+                // Gal领域的CDN需要验证，直接跳转最稳定
                 items.push({
                     name: g.name || '未知游戏',
                     url: `${this.base}/games/${g.id}`,
                     type: 'link',
                     source: 'galzone',
-                    drive: g.platforms ? g.platforms.join('/') : '',
-                    code: 'galgame.zone',
+                    drive: 'Gal领域',
+                    code: '需站内下载',
                     size: '',
                     tags: tags,
                     date: r.releaseDate || ''
