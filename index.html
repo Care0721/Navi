@@ -2794,10 +2794,15 @@
         
         /* Adjust navbar when announcement is visible */
         .announcement-bar.show ~ #app-root #navbar {
-            top: calc(44px + env(safe-area-inset-top, 0px));
+            top: calc(44px + env(safe-area-inset-top, 0px)) !important;
         }
         .announcement-bar.show ~ #app-root main {
-            padding-top: calc(64px + 44px + env(safe-area-inset-top, 0px));
+            padding-top: calc(64px + 44px + env(safe-area-inset-top, 0px)) !important;
+        }
+        
+        /* 确保公告栏在导航栏之上 */
+        .announcement-bar {
+            z-index: 100 !important;
         }
         
         /* ============================================
@@ -3454,6 +3459,9 @@
                     </button>
                     <div class="dropdown glass-dark" id="user-dropdown">
                         <div id="menu-guest">
+                            <a href="/blog.html" onclick="closeDropdown()">
+                                <i class="fas fa-pen-nib" style="color: var(--accent-green, #10b981)"></i>日记
+                            </a>
                             <button type="button" onclick="openModal('login')">
                                 <i class="fas fa-sign-in-alt" style="color: var(--accent-blue)"></i>登录
                             </button>
@@ -3462,6 +3470,9 @@
                             </button>
                         </div>
                         <div id="menu-user" class="hidden">
+                            <a href="/blog.html" onclick="closeDropdown()">
+                                <i class="fas fa-pen-nib" style="color: var(--accent-green, #10b981)"></i>日记
+                            </a>
                             <button type="button" onclick="go('favorites');closeDropdown()">
                                 <i class="fas fa-heart" style="color: var(--accent-pink)"></i>我的收藏
                             </button>
@@ -7532,7 +7543,7 @@ const MoyuAPI = {
 };
 
 // ===================== SayaFX 月谣 API =====================
-// sayafx.vip - 月谣免费GalGame资源站 (Hexo静态博客)
+// sayafx.vip - 月谣免费GalGame资源站 (Hexo静态日记)
 const SayaFXAPI = {
     base: 'https://sayafx.vip',
     searchUrl: 'https://sayafx.vip/search.xml',
@@ -7710,7 +7721,7 @@ const SayaFXAPI = {
 };
 
 // ===================== Yinghu 萤之光 API =====================
-// yinghu.asia - 萤之光冷门gal日乙档案馆 (Hexo静态博客)
+// yinghu.asia - 萤之光冷门gal日乙档案馆 (Hexo静态日记)
 const YinghuAPI = {
     base: 'https://www.yinghu.asia',
     searchUrl: 'https://www.yinghu.asia/search.xml',
@@ -8961,7 +8972,7 @@ const DanwoAPI = {
 };
 
 // ===================== ACG游戏网 (acgyw.xyz) =====================
-// Typecho博客，无需登录，详情页有百度网盘链接
+// Typecho日记，无需登录，详情页有百度网盘链接
 const AcgywAPI = {
     base: 'https://acgyw.xyz',
     id: 'acgyw',
@@ -9037,7 +9048,7 @@ const AcgywAPI = {
 };
 
 // ===================== 娜娜资源网 (nn0721.com) =====================
-// Typecho博客，Cuckoo主题，无需登录
+// Typecho日记，Cuckoo主题，无需登录
 const Nn0721API = {
     base: 'https://nn0721.com',
     id: 'nn0721',
@@ -9481,7 +9492,7 @@ const NekoNyanAPI = {
 
 // ===================== 新增10个下载源 API =====================
 
-// 1. Wafuwafu (wafuwafu.com) - WordPress博客
+// 1. Wafuwafu (wafuwafu.com) - WordPress日记
 const WafuwafuAPI = {
     base: 'https://wafuwafu.com',
     id: 'wafuwafu',
@@ -10314,7 +10325,7 @@ const XinglingAPI = {
     }
 };
 
-// 3. 小鳥遊暁 (t-satoru.top) - Hexo博客
+// 3. 小鳥遊暁 (t-satoru.top) - Hexo日记
 const TSatoruAPI = {
     base: 'https://t-satoru.top',
     id: 'tsatoru',
@@ -10327,7 +10338,7 @@ const TSatoruAPI = {
             });
 
             const items = [];
-            // Hexo博客文章链接提取
+            // Hexo日记文章链接提取
             const articleRegex = /<a[^>]*href="([^"]+)"[^>]*>([^<]{10,})<\/a>/gi;
             let match;
             while ((match = articleRegex.exec(html)) !== null) {
