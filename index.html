@@ -1216,7 +1216,8 @@
             visibility: visible;
             transform: translateY(0) scale(1);
         }
-        .dropdown button {
+        .dropdown button,
+        .dropdown a {
             width: 100%;
             text-align: left;
             padding: 10px 14px;
@@ -1230,8 +1231,10 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            text-decoration: none;
         }
-        .dropdown button:hover {
+        .dropdown button:hover,
+        .dropdown a:hover {
             background: var(--bg-tertiary);
         }
         
@@ -3444,6 +3447,11 @@
                     </button>
                 </div>
                 
+                <!-- 日记入口 -->
+                <a href="/blog.html" class="theme-toggle mr-2 flex items-center justify-center" aria-label="日记" style="text-decoration:none;color:var(--text-secondary);">
+                    <i class="fas fa-book-open"></i>
+                </a>
+                
                 <!-- Theme Toggle -->
                 <button type="button" onclick="toggleTheme()" class="theme-toggle mr-2" id="theme-toggle-btn" aria-label="切换主题">
                     <i class="fas fa-moon" id="theme-icon"></i>
@@ -3459,9 +3467,6 @@
                     </button>
                     <div class="dropdown glass-dark" id="user-dropdown">
                         <div id="menu-guest">
-                            <a href="/blog.html" onclick="closeDropdown()">
-                                <i class="fas fa-pen-nib" style="color: var(--accent-green, #10b981)"></i>日记
-                            </a>
                             <button type="button" onclick="openModal('login')">
                                 <i class="fas fa-sign-in-alt" style="color: var(--accent-blue)"></i>登录
                             </button>
@@ -3470,9 +3475,6 @@
                             </button>
                         </div>
                         <div id="menu-user" class="hidden">
-                            <a href="/blog.html" onclick="closeDropdown()">
-                                <i class="fas fa-pen-nib" style="color: var(--accent-green, #10b981)"></i>日记
-                            </a>
                             <button type="button" onclick="go('favorites');closeDropdown()">
                                 <i class="fas fa-heart" style="color: var(--accent-pink)"></i>我的收藏
                             </button>
